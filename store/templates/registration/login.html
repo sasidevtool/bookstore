@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 <form method="post" action = ".">
 
     {% csrf_token %}
@@ -15,5 +10,4 @@
 <a href="{% url 'social:begin' 'facebook' %}?next={{next}}">Login with Facebook</a>
 <a href="{% url 'social:begin' 'twitter' %}?next={{next}}">Login with Twitter</a>
 <a href="{% url 'social:begin' 'google-oauth2' %}?next={{next}}">Login with Google</a>
-</body>
-</html>
+{% endblock %}
