@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
 )
 
 MIDDLEWARE = [
@@ -64,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -128,6 +131,21 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/store/'
 REGISTRATION_EMAIL_HTML = False
 
+AUTHENTICATION_BACKENDS = {
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+# Social Auth - Facebook
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_FACEBOOK_KEY = '140115106643583'
+SOCIAL_AUTH_FACEBOOK_SECRET = '8dad8ea8d7dd3490a8b34aa741380f28'
+SOCIAL_AUTH_TWITTER_KEY = '3fdnBZCYLDmPpCCglMLkMZ88F'
+SOCIAL_AUTH_TWITTER_SECRET = 'FCNNBF27ZJFG0lD0zmg03tJutaHc5PtlLJ9NFgnc7ojZbRoj4d'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '765035185957-mfo4ddf4fk4o70l57e3vvkng2vh8h190'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'PwgsUkSxcO154vbPmfXLudiO'
 # Email settings
 SITE_HOST = 'localhost:8000'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

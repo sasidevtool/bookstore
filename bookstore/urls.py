@@ -20,5 +20,7 @@ from store.views import index, store
 urlpatterns = (
     url(r'^store/', include('store.urls'), name='store'),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url('', include('django.contrib.auth.urls', namespace='auth')),
+    url('',include('social_django.urls', namespace = 'social')),
     url(r'^admin/', admin.site.urls),
 )
