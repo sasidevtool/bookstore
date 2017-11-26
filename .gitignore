@@ -311,3 +311,5 @@ fabric.properties
 .idea/inspectionProfiles/Project_Default.xml
 .idea/misc.xml
 
+# Compiled static files
+/static
