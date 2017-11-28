@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from store.views import index, store
+from django.conf import settings
+from django.conf.urls.static import static
 
-urlpatterns = (
+urlpatterns = [
     url(r'^store/', include('store.urls'), name='store'),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url('', include('django.contrib.auth.urls', namespace='auth')),
     url('',include('social_django.urls', namespace = 'social')),
     url(r'^admin/', admin.site.urls),
-)
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
