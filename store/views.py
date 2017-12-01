@@ -10,6 +10,10 @@ from django.utils import timezone
 from django.http import JsonResponse
 import paypalrestsdk, stripe
 from .forms import ReviewForm
+from django.core.mail import EmailMultiAlternatives
+from django.template import Context
+from django.template.loader import render_to_string
+import string, random
 
 
 def index(request):
@@ -39,6 +43,23 @@ def book_details(request, book_id):
                     text=form.cleaned_data.get('text')
                 )
                 new_review.save()
+                if Review.objects.filter(user=request.user).count()<6:
+                    subject = 'Your MysteryBooks.com discount code is here!'
+                    from_email = 'librarian@mysterybooks.com'
+                    to_email=[request.user.email]
+
+                    email_context ={
+                        'username': request.user.username,
+                        'code': ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6)),
+                        'discount': 10
+                    }
+                    text_email = render_to_string('email/review_email.txt', email_context)
+                    html_email = render_to_string('email/review_email.html', email_context)
+
+                    msg = EmailMultiAlternatives(subject, text_email, from_email, to_email)
+                    msg.attach_alternative(html_email,'text/html')
+                    msg.content_subtype = 'html'
+                    msg.send()
         else:
             if Review.objects.filter(user=request.user, book=context['book']).count() == 0:
                 form = ReviewForm()

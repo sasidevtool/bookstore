@@ -163,9 +163,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'PwgsUkSxcO154vbPmfXLudiO'
 # Email settings
 SITE_HOST = 'localhost:8000'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'regaccbookstore@gmail.com'
-EMAIL_HOST_PASSWORD = 'acc123456789'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sandbox31aa4ce130f04d979d52ae755ff0cbbd.mailgun.org'
+EMAIL_HOST_PASSWORD = '51cb96b98d4016fe604257ebb5d15b0d'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'books@mysterybooks.com'
