@@ -29,4 +29,4 @@ six==1.11.0
 social-auth-app-django==2.0.0
 social-auth-core==1.5.0
 stripe==1.75.0
-urllib3==1.24.2
+urllib3==1.26.5
